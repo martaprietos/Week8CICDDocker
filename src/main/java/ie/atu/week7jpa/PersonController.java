@@ -32,8 +32,7 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public Person update(@PathVariable String id, @Valid @RequestBody Person person) {
-        return person;
+    public void update(@PathVariable String id, @RequestParam String email) {//use id to find person, take in new email value
+        service.update(id, email);
     }
-
 }
