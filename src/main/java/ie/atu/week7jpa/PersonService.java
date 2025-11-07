@@ -18,7 +18,14 @@ public class PersonService {
 
     public Person delete(String id) {
         Person person = repo.findByEmployeeId(id).orElseThrow(() -> new IllegalArgumentException("Person not found"));;
-        repo.delete(person);
+        repo.delete(person);//delete person with corresponding id
+        return person;
+    }
+
+    public Person update(String id, String email) {
+        Person person = repo.findByEmployeeId(id).orElseThrow(() -> new IllegalArgumentException("Person not found"));;
+        person.setEmail(email);//use setter to change email
+        repo.save(person);//put person back into database
         return person;
     }
 }
