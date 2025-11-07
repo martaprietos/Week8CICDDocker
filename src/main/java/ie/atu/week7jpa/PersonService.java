@@ -2,6 +2,7 @@ package ie.atu.week7jpa;
 
 import org.springframework.stereotype.Service;
 
+import java.security.cert.Extension;
 import java.util.List;
 
 @Service
@@ -13,5 +14,11 @@ public class PersonService {
     public Person findByEmployeeId(String id) {
         return repo.findByEmployeeId(id)
                 .orElseThrow(() -> new IllegalArgumentException("Person not found"));
+    }
+
+    public Person delete(String id) {
+        Person person = repo.findByEmployeeId(id).orElseThrow(() -> new IllegalArgumentException("Person not found"));;
+        repo.delete(person);
+        return person;
     }
 }
